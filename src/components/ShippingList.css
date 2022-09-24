@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6rem;
+  height: auto;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 18px;
+  background-color: rgb(184, 200, 206);
+}
+
+th {
+  padding-top: 40px;
+  font-family: monospace;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: lightblue;
+  color: rgb(13, 0, 85);
+  height: 80px;
+  font-size: 32px;
+}
+
+.block {
+  display: flex;
+  flex-direction: row;
+}
