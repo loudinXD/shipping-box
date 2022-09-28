@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import "./Form.css";
-import axios from "axios";
 function ShippingForm(props) {
   const [itemName, setItemName] = useState("");
   const [itemColor, setItemColor] = useState("#000000");
@@ -16,15 +15,17 @@ function ShippingForm(props) {
       weight: itemWeight,
       destination: itemDestination,
     };
-    props.addToListCallback(data);
-    await fetchQuestions(data);
+    await storeData(data);
   }
 
-  async function fetchQuestions(data) {
+  async function storeData(data) {
     try {
       var url = "http://localhost:3001/students";
-      var response = await axios.post(url, data);
-      console.log("Axios response ", response);
+      const rawResponse = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      console.log("rawResponse ", rawResponse);
     } catch (error) {
       console.log("Axios error ", error);
     }

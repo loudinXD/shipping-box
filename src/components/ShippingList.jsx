@@ -1,26 +1,27 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ShippingList.css";
-import ShippingForm from "./ShippingForm";
+import axios from "axios";
 
 function ShippingList() {
-  console.log("INSIDE ShippingList()");
-
   const [items, setitems] = useState([]);
 
-  function addToList(item) {
-    console.log("INSIDE ShippingList() val-> ", item);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const itemsCopy = [...items];
-    itemsCopy.push(item);
-    setitems(itemsCopy);
+  async function fetchData() {
+    try {
+      var url = "http://localhost:3001/students";
+      var response = await axios.get(url);
+      setitems(response.data);
+    } catch (error) {
+      console.log("Axios error ", error);
+    }
   }
 
   return (
     <div className="block">
-      <div>
-        <ShippingForm addToListCallback={(item) => addToList(item)} />
-      </div>
       <div>
         <table style={inputBox}>
           <thead>
@@ -30,7 +31,6 @@ function ShippingList() {
             <th>DESTINATION</th>
           </thead>
           <tbody>
-            {/* {tableData} */}
             {items.map((item) => {
               return (
                 <tr key={item.title}>
