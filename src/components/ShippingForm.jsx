@@ -1,13 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import "./Form.css";
-function Form(props) {
+import axios from "axios";
+function ShippingForm(props) {
   const [itemName, setItemName] = useState("");
   const [itemColor, setItemColor] = useState("#000000");
   const [itemWeight, setItemWeight] = useState(0);
   const [itemDestination, setItemDestination] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     var data = {
       title: itemName,
@@ -16,7 +17,19 @@ function Form(props) {
       destination: itemDestination,
     };
     props.addToListCallback(data);
+    await fetchQuestions(data);
   }
+
+  async function fetchQuestions(data) {
+    try {
+      var url = "http://localhost:3001/students";
+      var response = await axios.post(url, data);
+      console.log("Axios response ", response);
+    } catch (error) {
+      console.log("Axios error ", error);
+    }
+  }
+
   return (
     <div
       style={{
@@ -87,7 +100,7 @@ function Form(props) {
   );
 }
 
-export default Form;
+export default ShippingForm;
 
 const form = {
   boxShadow: "0 10px 10px rgb(0 0 0 / 0.2)",

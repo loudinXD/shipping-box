@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./ShippingList.css";
-import Form from "./Form";
+import ShippingForm from "./ShippingForm";
 
 function ShippingList() {
   console.log("INSIDE ShippingList()");
@@ -16,25 +16,10 @@ function ShippingList() {
     setitems(itemsCopy);
   }
 
-  function tableData() {
-    console.log("INSIDE tableData()");
-
-    items.map((item) => {
-      return (
-        <tr key={item.title}>
-          <td>{item.title}</td>
-          <td>{item.weight}</td>
-          <td>{item.color}</td>
-          <td>{item.place}</td>
-        </tr>
-      );
-    });
-  }
-
   return (
     <div className="block">
       <div>
-        <Form addToListCallback={(item) => addToList(item)} />
+        <ShippingForm addToListCallback={(item) => addToList(item)} />
       </div>
       <div>
         <table style={inputBox}>

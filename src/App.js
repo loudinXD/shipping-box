@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Form from "./components/Form";
 import ShippingList from "./components/ShippingList";
 
 function App() {
